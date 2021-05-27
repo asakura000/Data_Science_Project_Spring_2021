@@ -12,7 +12,7 @@
     c. index.html - contains the layout for the web app, the code for the web page style, and a little bit of javascript for the guage feature on the web app
     
     
-    d. 100_sample.csv - I wanted to create features on the app that would make it so people who don't necessarily want to type anything into the textbox, or just want to test drive the app, and see how the model evaluate texts from a sample of 100 that I compiled. 
+    d. 100_sample.csv - I created features on the app that would make it so people who don't necessarily want to type anything into the textbox, or just want to test drive the app, can see how the model evaluate texts from a sample of 100 that I compiled. 
     
     
     e. getSampleText.py - creates lists (arrays) out of the 100 sample csv file, and splits it up by categories.
