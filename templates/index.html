@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+	<style>
+		*{
+			margin: 0; padding: 0; border: 0; box-sizing:border-box;
+		}
+
+		button {
+			width: 200px;
+			height: 50px;
+			background-color: white;
+			border-radius: 20px;
+			border: 2px solid black;
+			font-size: 15px;
+			margin-top: 20px;
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+
+		button:hover {
+			background-color: skyblue;
+		}
+
+		h1,
+		h2,
+		h3,
+		p {
+  			font-family: Helvetica;
+  			color: black;
+		}
+
+		h1 {
+  			font-size: 75px;
+  			font-weight: bold;
+  			color: #ebb931;
+  			text-align: center;
+  			padding-top: 30px;
+		}
+
+		h2{
+			color: black;
+			text-align: center;
+		}
+
+		h3 {
+			color: black;
+			font-size: 30px;
+			text-align: center;
+		}
+
+		h4 {
+			padding-top: 20px;
+			font-size: 20px;
+			color: white;
+			font-family: Helvetica;
+		}
+
+		p{
+			font-size: 30px;
+			font-weight: bold;
+			color: white;
+			text-align: center;
+		}
+
+		main {
+			background-color: white;
+			min-height: 1200px;
+			display: flex;
+			flex-flow: row wrap;
+		}
+
+		select {
+  			width: 500px;
+  			height: 25px;
+  			overflow: hidden;
+  			white-space: pre;
+  			text-overflow: ellipsis;
+  			margin-top: 40px;
+  			margin-bottom: 20px;
+  			font-size: 20px;
+		}
+
+		.evalLeft{
+			margin-top: 5%;
+		}
+
+		.left {
+			flex: 0 0 600px;
+			background-color: gray;
+      		display: flex;
+      		flex-flow: column wrap;
+		}
+
+		.inputTextDisplay {
+			color: black;
+			font-size: 25px;
+		}
+
+		.middle {
+			flex: 1 0 auto;
+			background-color: black;
+		    display: flex;
+		    flex-flow: column wrap;
+		    align-items: center;
+		}
+
+		.right {
+			flex: 0 0 600px;
+			background-color: gray;
+      		display: flex;
+      		flex-flow: column wrap;
+      		align-items: center;
+		}
+
+		.typeBox{
+			height: 150px;
+			width: 580px;
+			font-size: 25px;
+			border-radius: 20px;
+			border: 2px solid black;
+		}
+
+    	.userInputFieldset {
+      		display: flex;
+      		flex-direction: column;
+      		align-items: center;
+    	}
+
+		.headerContainer{
+			width: 100%;
+			height: 75px;
+			background-color: white;
+			display: flex;
+			flex-wrap: wrap;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: flex-start;
+			align-content: flex-start;
+
+		}
+
+		.modelPredictedText {
+			margin-top: 20px;
+		}
+
+		.clickToGen {
+			margin-top: 20px;
+		}
+
+		.result_text {
+			font-family: 'Roboto', sans-serif;
+			font-size: 50px;
+			color: yellow;
+			text-align: center;
+		}
+
+		.textbox {
+			height: 50px;
+			padding-left: 100px;
+
+		}
+
+		.legendText {
+			font-family: Helvetica;
+			font-size: 40px;
+			color: white;
+			font-weight: bold;
+			padding-top: 20px;
+			margin-bottom: 20px;
+      		text-align: center;
+      		width: 100%;
+		}
+
+		.guage1 {
+			padding-top: 25px;
+			width: 100%;
+			max-width: 500px;
+			font-family: 'Roboto', sans-serif;
+			font-size: 64px;
+			color: yellow;
+			padding-bottom: 50px;
+		}
+
+		.guage2 {
+			width: 100%;
+			max-width: 500px;
+			font-family: 'Roboto', sans-serif;
+			font-size: 64px;
+			color: green;
+			padding-bottom: 25px;
+		}
+
+		.guage__body1 {
+			width: 100%;
+			height: 0;
+			padding-bottom: 50%;
+			background-color: gray;
+			position: relative;
+			border-top-left-radius: 100% 200%;
+			border-top-right-radius: 100% 200%;
+			overflow: hidden;
+
+		}
+
+		.guage__body2 {
+			width: 100%;
+			height: 0;
+			padding-bottom: 50%;
+			background-color: gray;
+			position: relative;
+			border-top-left-radius: 100% 200%;
+			border-top-right-radius: 100% 200%;
+			overflow: hidden;
+		}
+
+		.guage__fill1{
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: inherit;
+			height: 100%;
+			background-color: green;
+			transform-origin: center top;
+			transform: rotate(0.25turn);
+			transition: transform 0.2s ease-out;
+		}
+
+		.guage__fill2{
+			position: absolute;
+			top: 100%;
+			left: 0;
+			width: inherit;
+			height: 100%;
+			background-color: green;
+			transform-origin: center top;
+			transform: rotate(0.25turn);
+			transition: transform 0.2s ease-out;
+		}
+
+		.guage__cover1{
+			width: 75%;
+			height: 150%;
+			background-color: black !important;
+			border-radius: 50%;
+			position: absolute;
+			top: 25%;
+			left: 50%;
+			transform: translateX(-50%);
+
+			/* Text */
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding-bottom: 25%;
+			box-sizing: border-box;
+		}
+
+		.guage__cover2{
+			width: 75%;
+			height: 150%;
+			background-color: black !important;
+			border-radius: 50%;
+			position: absolute;
+			top: 25%;
+			left: 50%;
+			transform: translateX(-50%);
+
+			/* Text */
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding-bottom: 25%;
+			box-sizing: border-box;
+		}
+
+		.guageLabel {
+			margin-bottom: 20px;
+		}
+
+		.dropdowngroup{
+			height: 600px;
+		}
+
+		.headerText {
+			padding-left: 200px;
+			padding-top: 10px;
+			color: black;
+			font-size: 50px;
+		}
+
+		#box{
+			display: flex;
+			background-color: white;
+			padding-top: 20px;
+			padding-left: 50px;
+			height: 100px;
+			width: 200px;
+		}
+
+		#textDisplay{
+			padding-top: 25%;
+			font-weight: bold;
+			color: black;
+      		text-align: center;
+		}
+
+		#photo{
+			width: 75px;
+			height: 75px;
+		}
+
+		#random_text{
+
+			color: black;
+			margin-bottom: 50px;
+			font-size: 25px;
+		}
+
+		#randomButton {
+			margin-bottom: 30px;
+		}
+
+		#selected_text {
+			font-size: 25px;
+			color: black;
+		}
+
+
+	</style>
+
+  <head>
+		<meta charset="utf-8">
+		<title>DAbL</title>
+		<link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
+  <body>
+
+  	<!--- Header --->
+	<section class="headerContainer">
+		<img id="photo" src="{{url_for('static', filename='blackbird.jpg')}}" alt="bird">
+		<h2 class="headerText">Detecting Abusive Language (DAbL)</h2>
+	</section>
+
+
+	<!---Main Content Section: 3 columns--->
+
+	<main>
+		<!--- Col #1: Text box for user input.--->
+		<section class="left">
+			<div>
+        <form action="{{ url_for('main') }}" method="POST">
+            <fieldset class="userInputFieldset">
+                <legend class="legendText">Type your text here:</legend>
+                <input class="typeBox" name="user_input_text" type="text" autocomplete=“off” required>
+                <button type="submit" class="evalLeft">Evaluate</button>
+            </fieldset>
+        </form>
+			</div>
+			<div id="textDisplay">
+				<h3 class="inputTextDisplay"> {{ input_text }} </h3>
+			</div>
+		</section>
+
+		<!--- Col #2: Output Display --->
+    	<section class="middle">
+			<div>
+				<h3 class="modelPredictedText"> Model Predicted:  </h3>
+				{% if result %}
+					<h4 class="result_text">  {{ result }}  </h4>
+	    		{% endif %}
+
+	    		{% if percent_abusive %}
+	    			<h4> Probability abusive: {{ percent_abusive }} </h4>
+	    		{% endif %}
+
+	    		{% if percent_notAbusive %}
+	    			<h4> Probability not abusive: {{ percent_notAbusive }} </h4>
+	    		{% endif %}
+			</div>
+
+			<div class="guage1">
+				<p class="guageLabel">Percent Abusive</p>
+				<div class="guage__body1">
+					<div class="guage__fill1"></div>
+					<div class="guage__cover1">50%</div>
+				</div>
+			</div>
+
+			<div class="guage2">
+				<p class="guageLabel">Percent Not Abusive</p>
+				<div class="guage__body2">
+					<div class="guage__fill2"></div>
+					<div class="guage__cover2">80%</div>
+				</div>
+			</div>
+
+		</section>
+
+		<!---Col #3: Random Text Generation --->
+
+		<section class="right">
+			
+			<h3 class="clickToGen">Click to Generate a Randomly Selected Sample Text<h3/>
+
+    		<form method ="POST" action="{{ url_for('main') }}">
+  				<button type="submit" id="randomButton" name="random" value="random"> Random </button>
+  				{% if random_text %}<h4 id="random_text">{{ random_text }}</h4>
+  				{% endif %}
+			</form>
+		
+
+		<!--- Generate and Evaluate Dropdown Menu --->
+			<div id="dropdowngroup">
+				<label for="dropdownMenu">Choose From a Category to Generate Sample Texts:</label>
+
+				<form method="POST" action="{{ url_for('main') }}">
+					<button type="submit" name="mixed" value="mixed"> Mixed Bag </button>
+					<button type="submit" name="misc" value="misc"> Miscellaneous </button>
+					<button type="submit" name="race" value="race"> Race </button>
+					<button type="submit" name="gender" value="gender"> Gender </button>
+					<button type="submit" name="immigration" value="immigration"> Immigration </button>
+					<button type="submit" name="other" value="other"> Other Groups </button>
+					<button type="submit" name="politics" value="politics"> Politics </button>
+
+					<select name="dropdownMenu" >
+						<option></option>
+					  {% for d in dropdownMenu %}
+					  	<option value= "{{ d }}" SELECT>{{ d }}</option>
+		    		  {% endfor %}
+					</select>
+
+					<button type="submit" name="evaluate" value="evaluate"> Evaluate </button>
+
+					<h4 id="selected_text">{{ selected_text }}</h4>
+				</form>
+			</div>
+		</section>
+
+	</main>
+
+	<footer><h4>Footer</h4></footer>
+
+     <script>
+     	const guageElement1 = document.querySelector(".guage1");
+     	function setGuageValue1(guage, value) {
+     		if (value < 0 || value > 1){
+     			return;
+     		}
+
+     		guage.querySelector(".guage__fill1").style.transform = `rotate(${value / 2}turn)`;
+     		guage.querySelector(".guage__cover1").textContent = `${Math.round(value * 100)}%`;
+     	}
+
+     	const guageElement2 = document.querySelector(".guage2");
+     	function setGuageValue2(guage, value) {
+     		if (value < 0 || value > 1){
+     			return;
+     		}
+
+     		guage.querySelector(".guage__fill2").style.transform = `rotate(${value / 2}turn)`;
+     		guage.querySelector(".guage__cover2").textContent = `${Math.round(value * 100)}%`;
+     	}
+
+     	setGuageValue1(guageElement1, {{ percent_abusive }} );
+
+     	setGuageValue2(guageElement2, {{ percent_notAbusive}} );
+
+     </script>
+
+
+
+
+  </body>
+</html>
