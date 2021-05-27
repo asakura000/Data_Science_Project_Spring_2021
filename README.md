@@ -1,6 +1,8 @@
 
 1. Jupyter Notebook: for exploratory data analysis and for comparing different models for performance
 2. The rest of the files are part of the flask app - some of the main ones listed here with description:
+
+
     a. app.py - links the back-end python code with the front end (html and css) so what you see on the website gets it info from the database
     
     
